@@ -2,16 +2,16 @@
 
 ## Description
 
-This four week course introduces participants to implementation of machine learning methods in Python using Jupyter Notebooks. Each two hour session will include brief tutorials and/or case studies interspersed with challenge exercises, and assumes attendees are familiar with basic Python syntax, using packages, and basic data manipulation using Pandas. The course also assumes a solid foundation in basic statistics as well as prior/concurrent participation in the fredhutch.io course Concepts in Machine Learning (or equivalent experience). At the end of this course, you will be able to apply basic principles of machine learning to research questions and will have established a foundation for further exploration of machine learning techniques.
+This four week course introduces participants to implementation of machine learning methods in R using RStudio. Each two hour session will include brief tutorials interspersed with challenge exercises, and assumes attendees are familiar with basic R syntax, using packages, and basic data manipulation using tidyverse. The course also assumes a strong foundation in basic statistics as well as prior/concurrent participation in the fredhutch.io course Concepts in Machine Learning (or equivalent experience). At the end of this course, you will be able to apply basic principles of machine learning to research questions and will have established a foundation for further exploration of machine learning techniques.
 
-**Required software**: You should come prepared with your own laptop with the software pre-installed to complete tutorials and challenges prior to the first day of class. Prior to the first class session, please ensure you can connect to the Marconi campus wireless network. Software requirements for this course can be found on fredhutch.io's software page (http://www.fredhutch.io/software/). If you are an SCCA employee, please see the note at the bottom of the software page (http://www.fredhutch.io/software/). The HackMD (interactive page used for sharing links and information) for this course can be found here: https://hackmd.io/@k8hertweck/pythonML
+**Required software**: Software requirements for this course can be found on [fredhutch.io's Software page](http://www.fredhutch.io/software/). The HackMD (interactive page used for sharing links and information) for this course is here: https://hackmd.io/@k8hertweck/RML
 
 ## Schedule
 
-- Week 1: Introduction and Conceptual Overview; CRISP-DM framework; EDA; Our Tools
-- Week 2: Supervised Learning via Regression
-- Week 3: Supervised Learning via Classification
-- Week 4: Unsupervised Learning via Dimensionality Reduction, Clustering, and Transfer Learning
+- Week 1: Conceptual Overview; CRISP-DM framework; EDA; Our Tools
+- Week 2: Case Study in Regression
+- Week 3: Case Study in Classification
+- Week 4: Case Study in Deep Learning and Transfer Learning
 
 ## Resources
 
