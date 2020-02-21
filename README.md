@@ -1,4 +1,4 @@
-# Intermediate Python: Machine Learning
+# Intermediate R: Machine Learning
 
 ## Description
 
