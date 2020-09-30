@@ -1,10 +1,10 @@
 # Course objectives
 
-## Class 1 objectives
+## Class 1: Data import, cleaning, visualization
 
-## Class 2 objectives
+## Class 2 objectives: Regression
 
-## Class 3 objectives
+## Class 3 objectives: Classification
 
 ## Class 4 objectives
 
