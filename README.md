@@ -8,10 +8,10 @@ This four week course introduces participants to implementation of machine learn
 
 ## Schedule
 
-- Week 1: Conceptual Overview; CRISP-DM framework; EDA; Our Tools
-- Week 2: Case Study in Regression
-- Week 3: Case Study in Classification
-- Week 4: Case Study in Deep Learning and Transfer Learning
+- Class 1: 
+- Class 2: 
+- Class 3: 
+- Class 4: 
 
 ## Resources
 
@@ -21,7 +21,3 @@ supplemental exercises for practice
 * [`solutions/`](solutions/) includes the solutions for all files in `exercises/`
 * [`instructors.md`](instructors.md) includes information for instructors to facilitate teaching each lesson
 * [`hackmdio.txt`](hackmdio.txt) is an archive of the [interactive webpage](https://hackmd.io) used during lessons
-
-Much of the material for these lessons has been adapted from these sources as well as those referenced in specific notebooks:
-* [An Introduction to Statistical Learning with Applications in R](http://www.statlearning.com/)
-* [ml_101](https://github.com/QCaudron/ml_101)
