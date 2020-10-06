@@ -38,3 +38,12 @@ Explain why we might want to create a lower-dimension representation of a datase
 Explain the curse of dimensionality
 Explain the conceptual basis of PCA (principal component analysis) and what is meant by subsequent PCs
 Describe how PCA is used in practice and when to avoid using it.
+
+---
+
+# Tidymodels resources:
+
+- https://www.tidymodels.org/start/models/
+- https://www.tidymodels.org/find/
+- http://www.rebeccabarter.com/blog/2020-03-25_machine_learning/
+- https://www.tmwr.org/
