@@ -9,9 +9,9 @@
 
 ## Class 2 objectives: Regression
 
-* Visualize single variables in different ways and plot continuous features against categorical features to highlight notable patterns (this lesson isn't about plotting specifically, but I'm hoping the plots here will help you create your own)
-* Engineer new features (columns) for our dataset using existing features and/or specific functions written for that purpose
+* Explain when to use regression vs classification
 * Set-up, fit, and evaluate different models for our problem, including linear regression and random forests
+* Evaluate model performance
 * Understand the basic structure and some of the strengths and draw-backs of the two models we fitted
 
 ## Class 3 objectives: Classification    
@@ -40,3 +40,4 @@
 - https://www.tidymodels.org/find/
 - http://www.rebeccabarter.com/blog/2020-03-25_machine_learning/
 - https://www.tmwr.org/
+- https://supervised-ml-course.netlify.app/chapter1
