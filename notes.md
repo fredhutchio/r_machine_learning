@@ -7,13 +7,6 @@
 * Prepare the data for further analysis by engineering new features (columns) from existing numeric and categorical features
 * Discuss how writing functions and classes can save considerable effort by allowing us to maintain control over inputs and avoid repetitious editing.
 
-## Class 2 objectives: Regression
-
-* Explain when to use regression vs classification
-* Set-up, fit, and evaluate different models for our problem, including linear regression and random forests
-* Evaluate model performance
-* Understand the basic structure and some of the strengths and draw-backs of the two models we fitted
-
 ## Class 3 objectives: Classification    
 
 * Place logistic regression in the taxonomy of ML algorithms
