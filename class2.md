@@ -42,6 +42,8 @@ Code: run lm()
     - yardstick: measure the effectiveness of models using performance metrics
     - broom: convert the information in common statistical R objects into user-friendly predictable formats
     - dials: create and manage tuning parameters and parameter grids
+    
+Maybe if we introduce all packages ahead of time we can just introduce the packages we will use in this class (rsample, parsnip, yardstick)
 
 **6. Training and testing**
   - We don't _need_ to do this for linear model but we will anyway (good practice)
@@ -50,7 +52,8 @@ Code: run lm()
     - balancing the split
   - build with training data
   - choose with validation data or resampled data
-  - evaluate with testing data
+- evaluate with testing data
+
 ```
 Code: split the data
 ```
@@ -82,3 +85,20 @@ Code: Fit the linear model and random forest model
 
 - root mean squared error metric
 - use the yardstick package
+
+>Note: In JS course she has them evaluate with training and testing data to show the difference in output (evaluating on training data will always be more optimistic)
+
+**9. Resampling**
+
+- Why resample?: "The idea of resampling is to create simulated data sets that can be used to estimate the performance of your model, say, because you want to compare models. You can create these resampled data sets instead of using either your training set (which can give overly optimistic results, especially for powerful ML algorithms) or your testing set (which is extremely valuable and can only be used once or at most twice)."
+ 
+ ```
+ Code:
+ 1. Create bootstrap resamples using rsample::bootstraps()
+ 2. Evaluate linear model and random forests with bootstrap resamples
+ ```
+ 
+ **10. Visualize model results**
+ 
+ - Use `tune::collect_predictions()`
+ - Plot predicted vs truth in  `ggplot`
