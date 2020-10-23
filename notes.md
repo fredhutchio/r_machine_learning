@@ -34,4 +34,12 @@
 - https://www.tidymodels.org/find/
 - http://www.rebeccabarter.com/blog/2020-03-25_machine_learning/
 - https://www.tmwr.org/
+
+Pulled from for class 2
 - https://supervised-ml-course.netlify.app/chapter1
+
+Pulled from for class 1
+- https://supervised-ml-course.netlify.app/chapter2
+
+Pulled from for unsupervised learning:
+- https://juliasilge.com/blog/cocktail-recipes-umap/
