@@ -7,12 +7,13 @@
 * Prepare the data for further analysis by engineering new features (columns) from existing numeric and categorical features
 * Discuss how writing functions and classes can save considerable effort by allowing us to maintain control over inputs and avoid repetitious editing.
 
+## Class 2 objectives: Regression    
+
+>Moved to class2.md
+
 ## Class 3 objectives: Classification    
 
-* Place logistic regression in the taxonomy of ML algorithms
-* Explain the key differences and similarities between logistic and linear regression.
-* Fit and interpret a logistic regression model in scikit-learn
-* Interpret the coefficients of logistic regression, using odds ratio
+>Moved to class3.md
 
 ## Class 4 objectives: PCA
 
