@@ -19,7 +19,7 @@
 **3. Remind of tidy models**
 - overview of the packages we will touch on today
 
-**4. Step 1 is always explore, visualize the data*
+**4. Step 1 is always explore, visualize the data**
 - Look at dataset
 - Emphasize imbalance (if there is one)
 - plot something
