@@ -35,6 +35,11 @@
 - http://www.rebeccabarter.com/blog/2020-03-25_machine_learning/
 - https://www.tmwr.org/
 
+Pulled from for class 1
+- https://juliasilge.com/blog/cocktail-recipes-umap/
+  - video has good discussion of eda, data cleaning
+
+
 Pulled from for class 2
 - https://supervised-ml-course.netlify.app/chapter1
 
