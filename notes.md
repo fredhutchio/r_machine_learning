@@ -17,10 +17,7 @@
 
 ## Class 4 objectives: PCA
 
-- Explain why we might want to create a lower-dimension representation of a dataset.
-- Explain the curse of dimensionality
-- Explain the conceptual basis of PCA (principal component analysis) and what is meant by subsequent PCs
-- Describe how PCA is used in practice and when to avoid using it.
+>Moved to class4.md
 
 # Notes
 
@@ -43,7 +40,7 @@ Pulled from for class 1
 Pulled from for class 2
 - https://supervised-ml-course.netlify.app/chapter1
 
-Pulled from for class 1
+Pulled from for class 3
 - https://supervised-ml-course.netlify.app/chapter2
 
 Pulled from for unsupervised learning:
