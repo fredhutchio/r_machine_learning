@@ -32,7 +32,8 @@
 Code: run lm() 
 ```
 **5. Tidy models!**
-> Note: bulk of this might go into class one (we could explain tidyverse and tidymodels together since they both rely on a similar idea/framework)
+> Note: bulk of this (and possibly section 4) could go into class one (we could explain tidyverse and tidymodels together since they both rely on a similar idea/framework). For me understanding why tidymodels was created/how it hooks into methods from other packages was key to understanding how everything fit together.
+
   - `Tidymodels` is a _collection_ of modular packages for modeling and machine learning that all rely on tidy principles and grammar.
     - rsample: data splitting and resampling
     - parsnip: tidy interface to models that can be used to try a range of models without having to learn each specific packages details.
