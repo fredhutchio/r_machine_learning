@@ -2,10 +2,7 @@
 
 ## Class 1: Data import, cleaning, visualization
 
-* Import a simple dataset and explore different qualitative and quantitative aspects of the data
-* Perform simple cleaning and visualization with single variables using the [Tidyverse](https://www.tidyverse.org/)
-* Prepare the data for further analysis by engineering new features (columns) from existing numeric and categorical features
-* Discuss how writing functions and classes can save considerable effort by allowing us to maintain control over inputs and avoid repetitious editing.
+>Moved to class1.md
 
 ## Class 2 objectives: Regression    
 
