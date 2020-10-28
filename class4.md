@@ -40,3 +40,9 @@ Before using `prep()` the steps have been defined but not actually run or implem
 **5. Explore the results of the PCA**
 - viz of first five PCs
 - discussion of how to read this plot
+- viz of PC1 by PC2 and PC1 by PC3 (or similar). Discussion of what these different visualizations are telling us.
+  - Similarly discuss how coloring/labeling of points can help us make sense of PCA
+- Need to stress that unlike with supervised learning we aren't given a quantitative outcome here. We're given a data structure that we must make sense of in a more qualitative way.
+
+**6. Demonstrate the utility of tidymodels by applying to UMAP**
+
