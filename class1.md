@@ -9,19 +9,57 @@
 
 ## Outline
 
-**Course Intro**
+**Course intro**
+
 - Welcome to Machine Learning with R
 - Things you should be familiar with
   - Machine learning concepts
     - link to concepts course materials
-  - the tidyverse
+  - Introduction to R
+    - link to intro R course materials
+  
+Course learning objectives:
+
+1.
+2.
+3.
+
+**Class 1 intro**  
+
+Class 1 covers:
+
+1. Course introduction
+2. Overview of tidyverse for EDA
+3. Quick look at building a model with base R
+4. Overview of tidymodels for modeling
+
+**Exploratory Data Anlysis (EDA) with the Tidyverse**
+
+- `Tidyverse` is a meta package:
+  - They are a single package that installs many different packages in one command
+  - Modular: each package addresses a step in the data science modeling process
+
+**Tidy tools are created specifically to support the human data analyst**
+- Focus on human centered design
+  - Consistancy is key to this - focus on making data structures and APIs consistant across packages
+    - API defines the external interface regardless of the internal workings
+  - Value consistancy over performance
+    - That means that other packages may run a little faster
+    - ideal for human analyst not necissarily software development
+
+_Tidyverse was created specifically for human data analysts._
+- We will use functions from
+  - ggplot2: for viz
+  - dplyr, tidyr: for manipulation
+  
+```
+Code:
+1. Do some EDA with Tidy
+2. Demonstrate a quick linear model with base R
+```
 
 **What is Tidymodels?**
->Note: Want to emphasize the major principles behind tidymodels. Each package has a specific usage and together they create a cohesive ecosystem of packages that play together easily and intentionaly. 
-
-- Meta packages
-  - They are a single package that installs many different packages in one command
-  - Modular - each package addresses a step in the data science modeling process
+>Note: Want to emphasize the major principles behind tidymodels and how it fits into tidyverse. Each package has a specific usage and together they create a cohesive ecosystem of packages that play together easily and intentionaly. 
  
 - `Tidymodels`
     - rsample: data splitting and resampling
@@ -32,14 +70,6 @@
     - yardstick: measure the effectiveness of models using performance metrics
     - broom: convert the information in common statistical R objects into user-friendly predictable formats
     - dials: create and manage tuning parameters and parameter grids
-
-**Tidy tools are created specifically to support the human data analyst**
-- Focus on human centered design
-  - Consistancy is key to this - focus on making data structures and APIs consistant across packages
-    - API defines the external interface regardless of the internal workings
-  - Value consistancy over performance
-    - That means that other packages may run a little faster
-    - ideal for human analyst not necissarily software development
 
 **`Parsnip` standardizes the interface for fitting models**
 
