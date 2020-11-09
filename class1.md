@@ -53,6 +53,7 @@ Class 1 covers:
     - ideal for human analyst not necissarily software development
     
 >For a primer on tidyverse check out [Tidy Modeling with R, Chapter 2: A Tidyverse Primer](https://www.tmwr.org/tidyverse.html)
+>For more information on design principles behind tidyverse check out the [Tidyverse Design Guide](https://design.tidyverse.org)
     
 - We will use functions from
   - ggplot2: for viz
@@ -94,8 +95,13 @@ _table content from [this](https://www.tidyverse.org/blog/2018/11/parsnip-0-0-1/
   - These packages also do not take a standard data format
 - An analyst hoping to try a few different ML algorithms would have to reformat their data, learn new syntax/parameters with each new package.
 - Parsnip provides a singular, consistant interface for these packages
-
+  - Added benefit of working with `recipe` and `workflow` to easily create workflows that capture preprocessing, modeling, and post processing.
+ 
 >For more indepth information on `parsnip` check out [Tidy Modeling with R, Chapter 7: Fitting Models with Parsnip](https://www.tmwr.org/models.html)
+
+**Lets build a model!**
+
+>Notes: Emphasize EDA as a step in model building, we will iteratively add more compelxity throughout this course including splitting data, bootstrapping, preprocessing with recipes, utilizing workflow objects, etc but class1 will demonstrate a very simplistic application of ML and usage of tidymodels
 
 ## Resources
 
