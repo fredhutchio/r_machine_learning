@@ -1,102 +1,97 @@
-# Class 3: Classification
-
-## Objectives
-
-* Place logistic regression in the taxonomy of ML algorithms
-* Explain the key differences and similarities between logistic and linear regression.
-* Fit and interpret a logistic regression model in scikit-learn
-* Interpret the coefficients of logistic regression, using odds ratio
+# Class 3: A more complex regression or classification
 
 ## Outline
 
-**1. Review of class 2**
+**Intro, course objectives**
 
-**2. Remind of machine learning concepts**
-- Regression vs classification
-- link to concepts class
-- introduce dataset
+**Review of class 3**
 
-**3. Remind of tidy models**
-- overview of the packages we will touch on today
+**Introduce dataset**
+- This is where we will ask questions of the dataset and work through the beginning conceptual steps of EDA
+  - ex: What are we hoping to predice? What columns should be included in our prediction? What questions do we have of the data before we start?
 
-**4. Step 1 is always explore, visualize the data**
-- Look at dataset
-- Emphasize imbalance (if there is one)
-- plot something
-- remove columns that are unnecessary
+**Explore dataset**
+- Take a look at the datset. What are we aiming to predict? What model should we use?
 
 ```
-Code: glimpse(), count(), some sort of ggplot()
+glimpse(), count(), group_by(), summarise()
 ```
 
-**5. Training and testing data**
-- use `rsample` package to split
-- pull out training and testing data into their own variables
+- Visualization allows you to gain an understanding of the data's characteristics **before** modeling
 
 ```
-Code:
-1. set.seed(1)
-2. split <- initial_split()
-3.  trainset <- training(split)
-    testset <- testing(split)
+Histogram of some interesting feature
 ```
 
-**6. imbalenced data**
-- Reiterate imbalance
-- Explain why this would be a problem
-- Explain the term "Downsampling"
-  - What data do we downsample on (training!)
-- we will use the `recipe` package to set up precprocessing steps
+- Discuss take aways from what we're seeing (i.e. is the dataset imbalenced, what does the histogram tell us?)
 
-**7. using recipe for preprocessing**
-- Explain the functions a little bit
+>Even if data is balanced have students make that assessment themselves
+
+**Training and testing data**
+- Use `rsample` to split the data
 
 ```
-Code: Look at recipe parameters, run recipe code
-Use prep() and bake() to see processed training data
+- remove columns deemed unnecissary earlier
+- load tidymodles
+- split the data so it divides a specific feature evenly with rsample()
 ```
 
-**8. Prediction**
-- We will look at two different classifiers (similar to what we did with regression)
-  - logistic regression
-  - decision tree
-- Link out to more information (concepts, etc) about these methods
-
-**9. Using `workflow` to tie together `tidymodels`
->Note: Not sure where this should go: Maybe the first class should dive more into the modular nature of the packages?
-
-- Explain the workflow is an object that bundles together preprocessing, modeling, and post processing
-- Combine a `recipe` with a `parsnip` model
-- Advantage:
-  - Keep these objects in one place
-  - Recipe prep and model fitting executed in a single call to `fit()`
-  - Can combine with `tune` for tuning parameters
-  - Will eventually be able to add post processing operations like modifying the probability cutoff
-  
-**10.  Use recipe and workflow to combine preprocessing and modeling**
-
-- For both decision tree and logistic regression
-- JS does a full example of one and then the other, I think it might be beneficial to walk through each step for both
-  - like, create recipe, build a decision tree model and log regression model, etc. Walk through each step for both
+**Preprocessing**
+- Do we have any preprocessing to do?
+- If the data is imbalenced (ideally it will be) we will discuss upsampling here
+- Demonstrate using recipe to preprocess our training data
 
 ```
-Code:
-1. Use recipe with training data to downsample
-2. Build a model with set_engine()
-3. Start a workflow by adding a recipe
-4. Add the model to workflow and fit
-5. print fitted model
+my_recipe <- recipe() %>% step_upsample()
 ```
 
-**11. Evaluation with confusion matrix**
-- Again using yardstick to evaluate
+**Creating a workflow**
+- We'll use a different engine for the random forest model from the `ranger` package.
+- combine the model with preprocessing step (recipe) using `workflow()`
 
 ```
-Code: conf_mat() on results
+## specify ranger model
+rf_spec <- rand_forest() %>% set_engine('ranger') %>% set_mode('classification')
+
+## Add recipe and model to workflow
+wf <- workflow() %>% add_recipe(my_recipe) %>% add_model(rf_spec)
 ```
 
-- Talk about accuracy and positive predictive value as other evaluation metrics
+**Resampling by cross validation**
+- Remember: Resampling is a way to improve the accuracy of your model
+- Maybe find a good resampling primer and link
+- Last class we did bootstrap, this class cross validation
+
+- Cross validation works by taking your training set and dividing up into equal subsets (aka folds). One fold is used for validation and the rest are used for training. You repeat the steps with all the training folds and combine the results by taking the mean (usually).
+    - probably will have to explain a little more indepth
+
+Cross validation can take quite a long time - it can be beneficial to use parallel processing
+
+>Note: How do you choose the number of folds?? When do you use cross validation vs boostrapping?
 
 ```
-Code: use yardstick::accuracy() and yardstick::ppv()
+ folds <- vfold_cv(training_dat, v = 10, repeats = 5)
 ```
+
+**Evaluation**
+- At this point we have preprocessed the data, built workflow to model, and created cross validation folds
+- Now we will evaluate how the model performed
+    - In our discussion of model performance we will touch on how to set non-default performance metrics and save predictions from resampled data.
+    
+- Use `fit_resamples()` to fit the workflow to the cross validation folds and determine how well the model performed each time
+    - remember that the wf includes the preprocessing step AND model specification
+
+- `save_pred = TRUE` allows us to save the model predictions so we can build a confusion matrix later
+- `metric_set(roc_auc, sens, spec)` sets specific performance metrics to be computed rather than the defaults
+    - the area under the ROC curve
+    - sensitivity
+    - specificity
+
+```
+wf %>%
+    fit_resamples(
+        folds,
+        metrics = metric_set(roc_auc, sens, spec),
+        control = control_resamples(save_pred = TRUE))
+```
+
