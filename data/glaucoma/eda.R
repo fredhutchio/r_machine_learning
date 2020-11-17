@@ -20,5 +20,5 @@ summary <- glaucoma_whole %>%
             mean_cornea_thickness = mean(cornea_thickness),
             mean_RNFL4 = mean(RNFL4.mean))
 
-# replicate fig 1 (boxplot)
-
+glaucoma_whole %>%
+  gather()

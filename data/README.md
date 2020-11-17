@@ -5,6 +5,7 @@
 - Downloaded from: https://datadryad.org/stash/dataset/doi:10.5061/dryad.q6ft5
 - Corrosponding paper: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177726
 - 3 files: ds_test.csv, ds_train.csv, ds_whole.csv
+-
 
 ### Data Dictionary
 
@@ -37,3 +38,13 @@
 - From the paper:
 
 >To increase the quality of the training dataset, we made a synthesized feature. The feature RNFL4.mean reflects the average value of RNFL SUP, INF, and TMP. Because the four RNFL features contain partial information about RNFL, and we need to reflect whole RNFL, we tested every combination of the four RNFL features and SUP-INF-TMP combination showed best performance.
+
+## `pan_cancer`
+
+- Downloaded from: https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq#
+- Corrosponding paper: Weinstein, John N., et al. 'The cancer genome atlas pan-cancer analysis project.' Nature genetics 45.10 (2013): 1113-1120.
+- 3 files: labels.csv, data.csv
+- Comments:
+  - Samples (instances) are stored row-wise. Variables (attributes) of each sample are RNA-Seq gene expression levels measured by illumina HiSeq platform
+  - A dummy name (gene_XX) is given to each attribute. Check the original submission ([Web Link]#!Synapse:syn4301332), or the platform specs for the complete list of probes name. The attributes are ordered consitently with the original submission.
+
