@@ -48,3 +48,12 @@
   - Samples (instances) are stored row-wise. Variables (attributes) of each sample are RNA-Seq gene expression levels measured by illumina HiSeq platform
   - A dummy name (gene_XX) is given to each attribute. Check the original submission ([Web Link]#!Synapse:syn4301332), or the platform specs for the complete list of probes name. The attributes are ordered consitently with the original submission.
 
+### Data Dictionary:
+
+## `leukemia`
+
+- Downloaded from: https://www.stjuderesearch.org/site/data/ALL1/
+- Corresponding paper: https://www.cell.com/cancer-cell/fulltext/S1535-6108(02)00032-6
+- Files:
+
+### Data Dictionary
