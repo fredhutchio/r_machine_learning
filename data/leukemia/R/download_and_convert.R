@@ -1,5 +1,5 @@
 ## Script used to download data files from https://www.stjuderesearch.org/site/data/ALL1/all_datafiles
-## and convert to csv!
+## and convert to csv! Could turn into markdown if that's more ledgible for interested students
 
 ## LOAD LIBRARIES ##
 library(tidyverse)
@@ -27,6 +27,7 @@ pullDat <- tibble(fullname = fullname, url = urls) %>%
 # create excelPath for ease of pasting
 excelPath <- "./data/leukemia/excel/"
 
+# loop over pullDat to pull url's and direct download to excelPath
 for(i in 1:length(pullDat$fullname)) {
   url <- as.character(pullDat[i,2])
   download.file(url = url, 
@@ -53,10 +54,41 @@ dir.create("./data/leukemia/csv")
 # loop over file names to read in xls and output csv 
 filesList <- list.files(excelPath, pattern = "xls")
 csvPath <- "./data/leukemia/csv"
-lapply(filesList, function(f){
+lapply(filesList, function(f) {
   inpath <- file.path(excelPath, f)
   csvfilename <- gsub("xls", "csv", f)
   outpath <- file.path(csvPath, csvfilename)
-  df <- read_excel(inpath, sheet=1)
+  df <- read_excel(inpath, sheet=1, col_names = FALSE) # since colnames need to be modified read in without colnames to prevent autonaming
+  
   write_csv(df, outpath)
+})
+
+## FIX HEADERS ##
+
+# create a function to merge headers
+create_headers <- function(df) {
+  primary <- as.character(df[1,])
+  secondary <- as.character(df[2,])
+  header <- paste(primary, secondary, sep = " ")
+  header <- gsub(" NA", "", header)
+  return(header)
+}
+
+# create function to place headers in df and remove the first two rows
+place_headers <- function(df, header) {
+  colnames(df) <- header
+  df <- df[-1:-2,]
+  return(df)
+}
+
+# loop over csv files to pull into environment, replace headers, and overwrite
+filesList <- list.files(csvPath, pattern = "csv")
+lapply(filesList, function(f) {
+  path <- file.path(csvPath, f)
+  df <- read_csv(path)
+  newColnames <- create_headers(df)
+  df <- place_headers(df, newColnames)
+  m <- paste0("overwriting: ", path)
+  message(m)
+  write_csv(df, path)
 })
