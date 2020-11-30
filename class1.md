@@ -7,6 +7,11 @@
 * Perform simple cleaning and visualization with single variables using the [Tidyverse](https://www.tidyverse.org/)
 * Prepare the data for further analysis by engineering new features (columns) from existing numeric and categorical features
 
+## Data Set
+
+- Glaucoma
+- This dataset has already been cleaned, subsetted. Walk through what the researchers did, look at summary statistics, and do some visualization 
+
 ## Outline
 
 **Course intro**
