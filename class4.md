@@ -6,6 +6,10 @@
 - Explain the conceptual basis of PCA (principal component analysis) and what is meant by subsequent PCs
 - Describe how PCA is used in practice and when to avoid using it.
 
+## Data set
+- Leukemia
+- Merge into a single csv but point students toward rmd that explains all the steps to get there.
+
 ## Class outline
 
 **1. Review class 3**
