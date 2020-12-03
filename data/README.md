@@ -5,7 +5,6 @@
 - Downloaded from: https://datadryad.org/stash/dataset/doi:10.5061/dryad.q6ft5
 - Corrosponding paper: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0177726
 - 3 files: ds_test.csv, ds_train.csv, ds_whole.csv
--
 
 ### Data Dictionary
 
@@ -43,7 +42,8 @@
 
 - Downloaded from: https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq#
 - Corrosponding paper: Weinstein, John N., et al. 'The cancer genome atlas pan-cancer analysis project.' Nature genetics 45.10 (2013): 1113-1120.
-- 3 files: labels.csv, data.csv
+- 2 files: labels.csv, data.csv
+  >NOTE: data.csv is not included here because it is too big to upload (>100MB). If we used it in class we would have to subset.
 - Comments:
   - Samples (instances) are stored row-wise. Variables (attributes) of each sample are RNA-Seq gene expression levels measured by illumina HiSeq platform
   - A dummy name (gene_XX) is given to each attribute. Check the original submission ([Web Link]#!Synapse:syn4301332), or the platform specs for the complete list of probes name. The attributes are ordered consitently with the original submission.
@@ -54,6 +54,7 @@
 
 - Downloaded from: https://www.stjuderesearch.org/site/data/ALL1/
 - Corresponding paper: https://www.cell.com/cancer-cell/fulltext/S1535-6108(02)00032-6
-- Files:
+- 8 Files: E2A.csv, bcr.csv, group_2_3.csv, hyperdip50.csv, mll.csv,	others.csv, t.csv, tel.csv
+>NOTE: These files were created from the excel data files at St. Judes. You can view what was done [here](leukemia/R/download_and_convert.R)
 
 ### Data Dictionary
