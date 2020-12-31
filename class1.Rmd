@@ -1,4 +1,13 @@
-# Class 1: Tidyverse and EDA
+---
+title: 'Machine Learning in R, Class 1: Tidyverse and EDA'
+output: github_document
+---
+
+<!--class1.md is generated from class1.Rmd. Please edit that file -->
+
+```{r setup, include=FALSE, purl=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
 ## Objectives
 
