@@ -1,0 +1,159 @@
+---
+title: "Download and wrangle data into a csv"
+author: "Lauren Wolfe"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = '~/Documents/work/coop/courses/instructorRepos/r_machine_learning/')
+```
+
+```{r load-libraries}
+library(tidyverse)
+library(readxl)
+library(knitr)
+```
+
+## Gather file metadata and create variables
+
+The data we are downloading are from St. Judes' data repository. You can see the data [here](https://www.stjuderesearch.org/site/data/ALL1/all_datafiles). Only the excel data files were downloaded since we will not be using the raw `.CEL` files. You can download the data by clicking on each file, but for reproducibility purposes I did this programatically.  
+
+The first step is creating varaibels of information about each file you want to download. We will create 2 variables initially - `fullname` and `url`. You can get the full url to any link by right clicking it and selecting `copy link address`.
+
+>Note: For E2A I pull the zip file rather than the xls file. This is because the link for the xls file is broken.
+
+```{r create-metadata}
+# fullname is the exact file name used on the st judes website
+fullname <- c("BCR-ABL", "E2A-PBX1", "Hyperdiploid >50", "MLL",
+              "T-ALL", "TEL-AML1", "Additional diagnostic cases", "Dx of patients that relapse or develop secondary AML")
+# url is the url of the file.
+url <- c("http://ftp.stjude.org/pub/data/ALL1/excel_files/BCR.xls",
+          "http://ftp.stjude.org/pub/data/ALL1/excel_files/e2a_zip.zip", 
+          "http://ftp.stjude.org/pub/data/ALL1/excel_files/Hyperdip50.xls",
+          "http://ftp.stjude.org/pub/data/ALL1/excel_files/MLL.xls",
+          "http://ftp.stjude.org/pub/data/ALL1/excel_files/T.xls",
+          "http://ftp.stjude.org/pub/data/ALL1/excel_files/TEL.xls",
+          "http://ftp.stjude.org/pub/data/ALL1/excel_files/Others.xls",
+          "http://ftp.stjude.org/pub/data/ALL1/excel_files/group_2_3.xls")
+```
+
+Next we will put these variables into a dataframe. We will also create a `filename` variable using `mutate()`. This is just the excel file name in all lowercase letters. I use the function `basename()` to pull out just the filename from the url field.
+
+```{r metadata}
+fileData <- tibble(fullname = fullname, url = url) %>%
+  mutate(filename = tolower(basename(url)))
+```
+
+We're also going to create a variable designating the path that we want to download the excel data to. If you were to run this script you would need to update `downloadPath` with the correct filepath for your environment. 
+
+>I used `dir.exists()` to make sure that the directory does not exist before using `dir.create()`. This is important because `dir.create()` fails when a directory already exists.
+
+```{r excel-path}
+downloadPath <- "./data/leukemia/excel/"
+if(!dir.exists(downloadPath)) {
+  dir.create(downloadPath)
+}
+```
+
+## Download data files
+
+Now we will loop over `fileData` to download the data to our specified directory `downloadPath`.
+
+```{r data-download}
+for(i in 1:length(fileData$fullname)) { # for each file in fileData$fullname
+  url <- as.character(fileData[i,2]) # pull out url
+  download.file(url = url, 
+                destfile = file.path(downloadPath, fileData[i,3])) #download file to file.path(downloadPath, fileData$filename)
+}
+```
+
+## Unzip file
+
+Now we have downloaded all of our files. Remember that one file we downloaded was the .zip version rather than excel. Lets unzip this file and then remove the zipped file.
+
+```{r unzip}
+# get index of zip file
+zipIndex <- grep("*zip", fileData$filename)
+zipFile <- file.path(downloadPath, fileData[zipIndex, 3])
+# unzip
+unzip(zipFile, exdir = downloadPath)
+# remove zip
+file.remove(zipFile)
+```
+
+## Look at Excel files
+
+Open up an Excel file. You can do this through the Excel application or use `read_excel()` to view in RStudio. You'll notice that there are two column names for all columns except for `Probe set` and `Description`. Having primary and secondary (and sometimes tertiary) column naming structure is a common occurance with research data. We'll convert these files to csv and then modify the column names
+
+Observations:
+1. The primary header is the sample name. It repeats twice.
+2. The secondary header alternates between "Avg Diff" and "Abs Call". These are both microarray metrics.
+3. What needs to happen is that we merge the sample name and the secondary header so that they will look like this: `<sampleName1> Avg Diff`, `<sampleName1 Abs Call`
+
+## Convert files to `csv`
+
+Make a directory of where you want to save the csv files. I made a separate directory called `csv/` but you could keep both in your `data/` directory. Again, I'm using `dir.exists()` to make sure that the directory does not exist before using `dir.create()`.
+
+```{r csv-path}
+csvPath <- "./data/leukemia/csv"
+if(!dir.exists(csvPath)) {
+  dir.create(csvPath)
+}
+```
+
+## Loop over file names to read in `xls` files and output as `csv`
+
+```{r convert2csv}
+# create vector of file names
+filesList <- list.files(downloadPath, pattern = "xls") 
+# loop over filesList
+lapply(filesList, function(f) {
+  inpath <- file.path(downloadPath, f) # use download path + file name to create path to xls files
+  csvFilename <- gsub("xls", "csv", f) # create new file name by replacing xls with csv
+  outpath <- file.path(csvPath, csvFilename) # create outpath by pasting together csvPath and csvFilename
+  df <- read_excel(inpath, sheet=1, col_names = FALSE) # colnames will be modified, read in without colnames
+  write_csv(df, outpath) # write csv to outPath
+})
+```
+
+## Merge primary and secondary column names
+
+I created two functions to make fixing the headers a little easier.
+
+`create_colnames` reads in the primary (row 1 in the dataframe) and secondary (row 2 in the dataframe) column names. It then pastes the two together. Since the first two columns do not have a secondary header I used `gsub()` to remove the `NA`s from those column names.
+
+`place_colnames` places the newly created column names into the dataframe using `colnames()` and then removes the first two rows containing the old column names.
+
+```{r create-fxns}
+create_colnames <- function(df) {
+  primary <- as.character(df[1,])
+  secondary <- as.character(df[2,])
+  header <- paste(primary, secondary, sep = " ")
+  header <- gsub(" NA", "", header)
+  return(header)
+}
+
+# create function to place headers in df and remove the first two rows
+place_colnames <- function(df, names) {
+  colnames(df) <- names
+  df <- df[-1:-2,]
+  return(df)
+}
+```
+
+Now I loop over the `csv` filenames to pull each one into the environment. Once the file is pulled in I use the functions above to create new column names and place them into the dataframe. Be aware: the way that this loop is set up it will overwrite the old files! 
+
+```{r write-new}
+filesList <- list.files(csvPath, pattern = "csv")
+lapply(filesList, function(f) {
+  path <- file.path(csvPath, f)
+  df <- read_csv(path)
+  newColnames <- create_colnames(df)
+  df <- place_colnames(df, newColnames)
+  m <- paste0("overwriting: ", path)
+  message(m)
+  write_csv(df, path)
+})
+```
